@@ -9,5 +9,5 @@
 <AppHeader {...meta} />
 
 <ScrollArea class="grow px-8 pt-8 pb-16 max-md:px-4">
-	<ToolsGrid items={meta.items} />
+	<ToolsGrid items={meta.items} pathPrefix="/programming" />
 </ScrollArea>
