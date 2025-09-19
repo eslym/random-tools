@@ -25,7 +25,9 @@ jobs:
           bun-version: 1.2.21
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: |
+          bun install --frozen-lockfile
+          cp .env.example .env
 
       - name: Svelte Check
         run: bun --bun x svelte-check
