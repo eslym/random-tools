@@ -30,7 +30,7 @@
 							</div>
 							<div class="flex flex-col gap-0.5 leading-none">
 								<span class="font-medium">Random Tools</span>
-								<span class="text-secondary-foreground">rev-{version.substring(0, 7)}</span>
+								<span class="text-muted-foreground">rev-{version.substring(0, 7)}</span>
 							</div>
 						</a>
 					{/snippet}
@@ -43,8 +43,10 @@
 			<Sidebar.Menu>
 				{#each menu as group (group.title)}
 					<Sidebar.MenuItem>
-						<Sidebar.MenuButton class="font-medium">
-							{group.title}
+						<Sidebar.MenuButton class="font-medium" isActive={group.path === page.url.pathname}>
+							{#snippet child({ props })}
+								<a href={group.path} {...props}>{group.title}</a>
+							{/snippet}
 						</Sidebar.MenuButton>
 						{#if group.items}
 							<Sidebar.MenuSub>

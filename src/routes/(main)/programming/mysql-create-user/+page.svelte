@@ -93,11 +93,11 @@
 	});
 </script>
 
-<AppHeader {...meta} group="Programming" />
+<AppHeader {...meta} group="Programming Tools" />
 
 <svelte:boundary onerror={() => (data.current = defaultData())}>
-	<AppMain class="@max-4xl:ml-0">
-		<Card.Root class="mx-auto max-w-xl">
+	<AppMain class="w-xl" wrapperClass="px-4 pt-4 pb-16">
+		<Card.Root>
 			<Card.Header>
 				<Card.Description>
 					{meta.description}

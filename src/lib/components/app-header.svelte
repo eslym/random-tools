@@ -4,9 +4,10 @@
 	import { Separator } from '$lib/components/ui/separator';
 	import type { Snippet } from 'svelte';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import { buttonVariants } from '$lib/components/ui/button';
-	import { SunIcon, MoonIcon, PaletteIcon } from '@lucide/svelte';
+	import { buttonVariants, Button } from '$lib/components/ui/button';
+	import { SunIcon, MoonIcon, PaletteIcon, GithubIcon } from '@lucide/svelte';
 	import { theme } from '$lib/theme.svelte';
+	import { PUBLIC_REPO_URL } from '$env/static/public';
 
 	let { group, title, description }: { group?: string; title: string; description?: string } =
 		$props();
@@ -41,6 +42,16 @@
 			</Breadcrumb.List>
 		</Breadcrumb.Root>
 		<Separator orientation="vertical" class="mr-2 ml-auto !h-16" />
+		<Button
+			href={PUBLIC_REPO_URL}
+			target="_blank"
+			class="size-7 max-sm:hidden"
+			variant="ghost"
+			size="icon"
+		>
+			<GithubIcon />
+		</Button>
+		<Separator orientation="vertical" class="mx-2 !h-16 max-sm:hidden" />
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger
 				class={buttonVariants({ variant: 'ghost', size: 'icon', class: 'size-7' })}

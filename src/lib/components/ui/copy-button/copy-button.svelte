@@ -35,7 +35,7 @@
 </script>
 
 <Button
-	{...rest}
+	{...rest as any}
 	bind:ref
 	{variant}
 	{size}
