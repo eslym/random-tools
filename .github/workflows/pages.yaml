@@ -24,10 +24,11 @@ jobs:
         with:
           bun-version: 1.2.21
 
-      - name: Install dependencies
+      - name: Prepare Project
         run: |
           bun install --frozen-lockfile
           cp .env.example .env
+          bun --bun x svelte-kit sync
 
       - name: Svelte Check
         run: bun --bun x svelte-check
