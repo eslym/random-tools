@@ -29,7 +29,10 @@
 		};
 	}
 
-	const opts = new PersistedState<SshKeyOptions>('ssh-key-options', defaultOptions());
+	const opts = new PersistedState<ReturnType<typeof defaultOptions>>(
+		'ssh-key-options',
+		defaultOptions()
+	);
 </script>
 
 <script lang="ts">
@@ -73,7 +76,7 @@
 						<div
 							class={buttonVariants({
 								variant: 'outline',
-								class: 'items-center'
+								class: 'items-center hover:bg-background dark:hover:bg-input/30'
 							})}
 						>
 							{#if mounted.current}
@@ -108,14 +111,20 @@
 						{#if opts.current.algorithm === 'rsa'}
 							<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 								<Label for="modulusLength">Bits</Label>
-								<Select.Root type="single" bind:value={opts.current.modulusLength as any}>
+								<Select.Root
+									type="single"
+									bind:value={
+										() => `${opts.current.modulusLength}`,
+										(v) => (opts.current.modulusLength = +v as any)
+									}
+								>
 									<Select.Trigger id="modulusLength" class="w-full">
 										{opts.current.modulusLength}
 									</Select.Trigger>
 									<Select.Content>
-										<Select.Item value={2048 as any}>2048</Select.Item>
-										<Select.Item value={3072 as any}>3072</Select.Item>
-										<Select.Item value={4096 as any}>4096</Select.Item>
+										<Select.Item value="2048">2048</Select.Item>
+										<Select.Item value="3072">3072</Select.Item>
+										<Select.Item value="4096">4096</Select.Item>
 									</Select.Content>
 								</Select.Root>
 							</div>
