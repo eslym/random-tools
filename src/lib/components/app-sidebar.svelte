@@ -3,11 +3,12 @@
 	import { page } from '$app/state';
 
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import { HammerIcon, SearchIcon } from '@lucide/svelte';
+	import { SearchIcon } from '@lucide/svelte';
 	import type { ComponentProps } from 'svelte';
 	import type { LayoutProps } from '../../routes/(main)/$types';
 	import { Label } from '$lib/components/ui/label';
 	import { isMatch } from '$lib/filter';
+	import FavIcon from '$lib/components/icons/FavIcon.svelte';
 
 	type Menu = LayoutProps['data']['menu'];
 
@@ -30,7 +31,7 @@
 							<div
 								class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground"
 							>
-								<HammerIcon class="size-4" />
+								<FavIcon class="size-5" />
 							</div>
 							<div class="flex flex-col gap-0.5 leading-none">
 								<span class="font-medium">Random Tools</span>

@@ -1,9 +1,6 @@
 <script lang="ts">
 	import AppHeader from '$lib/components/app-header.svelte';
 	import { ScrollArea } from '$lib/components/ui/scroll-area';
-	import * as Card from '$lib/components/ui/card';
-	import { Button } from '$lib/components/ui/button';
-	import { ExternalLinkIcon } from '@lucide/svelte';
 	import ToolsGrid from '$lib/components/tools-grid.svelte';
 
 	let { data } = $props();

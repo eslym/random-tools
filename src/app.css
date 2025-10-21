@@ -118,6 +118,16 @@
 	color-scheme: dark;
 }
 
+@theme {
+	--font-sans:
+		'Noto Sans', 'Noto Sans SC', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans KR', 'Noto Color Emoji',
+		ui-sans-serif, system-ui, -apple-system, sans-serif;
+	--font-serif:
+		'Noto Serif', 'Noto Serif SC', 'Noto Serif TC', 'Noto Serif JP', 'Noto Sans KR',
+		'Noto Color Emoji', serif;
+	--font-mono: 'Noto Sans Mono', 'Noto Color Emoji', monospace;
+}
+
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
@@ -167,6 +177,12 @@
 	--shadow-2xl: var(--shadow-2xl);
 }
 
+:root {
+	--cp-bg-color: transparent;
+	--cp-border-color: transparent;
+	--cp-text-color: var(--color-popover-foreground);
+}
+
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
@@ -205,7 +221,7 @@
 	}
 
 	pre.shiki code {
-		@apply grid min-w-full rounded-none border-0 bg-transparent p-0 break-words;
+		@apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
 		counter-reset: line;
 		box-decoration-break: clone;
 	}

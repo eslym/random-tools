@@ -26,6 +26,12 @@ const config = {
 		}),
 		version: {
 			name: version
+		},
+		serviceWorker: {
+			register: false
+		},
+		paths: {
+			assets: process.env.DEPLOY_URL
 		}
 	}
 };
