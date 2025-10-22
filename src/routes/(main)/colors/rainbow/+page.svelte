@@ -74,7 +74,9 @@
 							<ChevronsDownIcon />
 						</Button>
 						<ColorPicker.Root bind:value={data.current.colors[index]}>
-							<ColorPicker.Trigger class="grow">Pick a Color</ColorPicker.Trigger>
+							<ColorPicker.Trigger class="grow capitalize">
+								{color}
+							</ColorPicker.Trigger>
 							<ColorPicker.Picker />
 						</ColorPicker.Root>
 						<Button
