@@ -27,9 +27,7 @@
 	import AppHeader from '$lib/components/app-header.svelte';
 	import { PersistedState } from 'runed';
 	import * as Card from '$lib/components/ui/card';
-	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
-	import { Switch } from '$lib/components/ui/switch';
 	import AppMain from '$lib/components/app-main.svelte';
 	import * as ColorPicker from '$lib/components/ui/color-picker';
 	import { Button } from '$lib/components/ui/button';
@@ -48,7 +46,7 @@
 		</Card.Header>
 		<Card.Content>
 			<div class="grid grid-cols-1 gap-2">
-				{#each data.current.colors as color, index (`${index}-${color}`)}
+				{#each data.current.colors as color, index (index)}
 					{@const isLast = index === data.current.colors.length - 1}
 					<div class="flex gap-2">
 						<Button
