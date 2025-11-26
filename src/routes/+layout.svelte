@@ -18,7 +18,7 @@
 		$effect(() => {
 			if (theme.current === 'dark') {
 				document.documentElement.classList.add('dark');
-				themeColor?.setAttribute('content', '#131119');
+				themeColor?.setAttribute('content', '#fcfcff');
 			} else {
 				document.documentElement.classList.remove('dark');
 				themeColor?.setAttribute('content', '#f9f9ff');

@@ -33,6 +33,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { ChevronsDownIcon, ChevronsUpIcon, MinusIcon } from '@lucide/svelte';
 	import { Snippet } from '$lib/components/ui/snippet';
+	import NumInput from '$lib/components/num-input.svelte';
 
 	let { data: meta } = $props();
 </script>
@@ -109,7 +110,7 @@
 			<Card.Title>Color Scale</Card.Title>
 			<Card.Description>The number of colors to generate in the gradient.</Card.Description>
 			<Card.Action>
-				<Input type="number" min={2} class="w-24" bind:value={data.current.scale} />
+				<NumInput min={2} class="w-24" bind:value={data.current.scale} />
 			</Card.Action>
 		</Card.Header>
 		<Card.Content>

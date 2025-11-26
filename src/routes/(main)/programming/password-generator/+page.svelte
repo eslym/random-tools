@@ -45,6 +45,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button';
 	import { Snippet } from '$lib/components/ui/snippet';
+	import NumInput from '$lib/components/num-input.svelte';
 
 	let { data: meta } = $props();
 
@@ -106,20 +107,15 @@
 						</div>
 						<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 							<Label for="no-repeat">No Repeat Window</Label>
-							<Input
-								id="no-repeat"
-								type="number"
-								bind:value={data.current.noRepeatWindow}
-								min={0}
-							/>
+							<NumInput id="no-repeat" bind:value={data.current.noRepeatWindow} min={0} />
 						</div>
 						<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 							<Label for="length">Password Length</Label>
-							<Input id="length" type="number" bind:value={data.current.length} {...constraints} />
+							<NumInput id="length" bind:value={data.current.length} {...constraints} />
 						</div>
 						<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 							<Label for="amount">Amount of Passwords</Label>
-							<Input id="amount" type="number" bind:value={data.current.amount} min={1} />
+							<NumInput id="amount" bind:value={data.current.amount} min={1} />
 						</div>
 					</div>
 					<ul class="mt-6 list-inside list-disc text-sm text-destructive">

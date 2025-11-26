@@ -120,7 +120,7 @@
 							<Button
 								variant="ghost"
 								size="icon"
-								class="absolute top-[1px] right-[1px] size-[calc(calc(var(--spacing)*9)-2px)] rounded-l-none"
+								class="absolute top-px right-px size-[calc(calc(var(--spacing)*9)-2px)] rounded-l-none"
 								onclick={() => (password = randomPass())}
 							>
 								<RefreshCwIcon />

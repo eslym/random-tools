@@ -73,6 +73,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Switch } from '$lib/components/ui/switch';
 	import AppMain from '$lib/components/app-main.svelte';
+	import NumInput from '$lib/components/num-input.svelte';
 
 	let { data: meta } = $props();
 </script>
@@ -91,31 +92,31 @@
 			<div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 @max-md:grid-cols-1">
 				<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 					<Label for="years">Years</Label>
-					<Input id="years" type="number" bind:value={data.years} min={0} />
+					<NumInput id="years" bind:value={data.years} min={0} />
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 					<Label for="months">Months</Label>
-					<Input id="months" type="number" bind:value={data.months} min={0} />
+					<NumInput id="months" bind:value={data.months} min={0} />
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 					<Label for="weeks">Weeks</Label>
-					<Input id="weeks" type="number" bind:value={data.weeks} min={0} />
+					<NumInput id="weeks" bind:value={data.weeks} min={0} />
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 					<Label for="days">Days</Label>
-					<Input id="days" type="number" bind:value={data.days} min={0} />
+					<NumInput id="days" bind:value={data.days} min={0} />
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 					<Label for="hours">Hours</Label>
-					<Input id="hours" type="number" bind:value={data.hours} min={0} />
+					<NumInput id="hours" bind:value={data.hours} min={0} />
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 					<Label for="minutes">Minutes</Label>
-					<Input id="minutes" type="number" bind:value={data.minutes} min={0} />
+					<NumInput id="minutes" bind:value={data.minutes} min={0} />
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 					<Label for="seconds">Seconds</Label>
-					<Input id="seconds" type="number" bind:value={data.seconds} min={0} />
+					<NumInput id="seconds" bind:value={data.seconds} min={0} />
 				</div>
 				<div class="col-start-2 flex items-center gap-2 @max-md:col-start-1">
 					<Switch id="negative" bind:checked={data.negative} />
