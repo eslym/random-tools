@@ -2,6 +2,7 @@
 	import type { ClassValue } from 'clsx';
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
+	import * as Item from '$lib/components/ui/item';
 	import { ExternalLinkIcon } from '@lucide/svelte';
 	import { cn } from '$lib/utils';
 
@@ -23,16 +24,16 @@
 	)}
 >
 	{#each items as item (item.path)}
-		<Card.Root>
-			<Card.Header>
-				<Card.Title>{item.title}</Card.Title>
-				<Card.Description>{item.description}</Card.Description>
-				<Card.Action>
-					<Button variant="secondary" size="icon" href="{pathPrefix}{item.path}">
-						<ExternalLinkIcon />
-					</Button>
-				</Card.Action>
-			</Card.Header>
-		</Card.Root>
+		<Item.Root variant="muted">
+			<Item.Content>
+				<Item.Title>{item.title}</Item.Title>
+				<Item.Description>{item.description}</Item.Description>
+			</Item.Content>
+			<Item.Actions>
+				<Button variant="secondary" size="icon" href="{pathPrefix}{item.path}">
+					<ExternalLinkIcon />
+				</Button>
+			</Item.Actions>
+		</Item.Root>
 	{/each}
 </div>

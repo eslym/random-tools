@@ -23,7 +23,7 @@
 		</div>
 		{#if !isMobile.current}
 			<div
-				class="w-0 max-w-[var(--sidebar-width)] grow transition-[max-width] duration-200 ease-linear group-has-[[data-slot=sidebar][data-collapsible=offcanvas]]/sidebar-wrapper:max-w-0"
+				class="w-0 max-w-(--sidebar-width) grow transition-[max-width] duration-200 ease-linear group-has-[[data-slot=sidebar][data-collapsible=offcanvas]]/sidebar-wrapper:max-w-0"
 			></div>
 		{/if}
 	</div>
