@@ -52,7 +52,7 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<meta name="theme-color" content={theme.current === 'dark' ? '#fcfcff' : '#131119'} />
+	<meta name="theme-color" content={theme.current === 'dark' ? '#131119' : '#fcfcff'} />
 </svelte:head>
 
 {@render children()}
