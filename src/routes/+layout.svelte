@@ -25,6 +25,16 @@
 			}
 		});
 
+		/**
+		 * If service worker is supported, update it and it will trigger the prompt for reload,
+		 * otherwise listen to navigation events and force a full reload if there's an update.
+		 *
+		 * When service worker is available, it will cache the old version, so it is ok not to reload,
+		 * but when it's not available, we need to reload to ensure the app is not trying to load
+		 * outdated resources (ex: missing javascript files).
+		 * 
+		 * @see https://svelte.dev/docs/kit/configuration#version
+		 */
 		if (serviceWorkerSupported()) {
 			$effect(() => {
 				if (updated.current) {
