@@ -32,13 +32,14 @@
 		 * When service worker is available, it will cache the old version, so it is ok not to reload,
 		 * but when it's not available, we need to reload to ensure the app is not trying to load
 		 * outdated resources (ex: missing javascript files).
-		 * 
+		 *
 		 * @see https://svelte.dev/docs/kit/configuration#version
 		 */
 		if (serviceWorkerSupported()) {
 			$effect(() => {
 				if (updated.current) {
-					updateServiceWorker();
+					// try to avoid cdn caching issues by delaying the update check
+					setTimeout(updateServiceWorker, 30_000);
 				}
 			});
 		} else {
