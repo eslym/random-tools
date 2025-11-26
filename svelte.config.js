@@ -25,7 +25,8 @@ const config = {
 			strict: true
 		}),
 		version: {
-			name: version
+			name: version,
+			pollInterval: 15_000
 		},
 		serviceWorker: {
 			register: false
