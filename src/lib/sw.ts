@@ -5,7 +5,7 @@ export function serviceWorkerSupported() {
 }
 
 export async function setupServiceWorker() {
-	if (!serviceWorkerSupported()) return;
+	if (!serviceWorkerSupported()) return false;
 	const reg = await navigator.serviceWorker.register('/service-worker.js', {
 		type: import.meta.env.DEV ? 'module' : 'classic'
 	});
@@ -21,14 +21,16 @@ export async function setupServiceWorker() {
 			}
 		});
 	});
+	return true;
 }
 
 export async function updateServiceWorker() {
-	if (!serviceWorkerSupported()) return;
+	if (!serviceWorkerSupported()) return false;
 	const reg = await navigator.serviceWorker.getRegistration();
 	if (reg) {
 		await reg.update();
+		return true;
 	} else {
-		await setupServiceWorker();
+		return await setupServiceWorker();
 	}
 }

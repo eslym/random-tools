@@ -7,7 +7,8 @@
 	import { update } from '$lib/stores/update.svelte';
 	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import { updated } from '$app/state';
-	import { updateServiceWorker } from '$lib/sw';
+	import { serviceWorkerSupported, updateServiceWorker } from '$lib/sw';
+	import { beforeNavigate } from '$app/navigation';
 
 	let { children } = $props();
 
@@ -24,11 +25,19 @@
 			}
 		});
 
-		$effect(() => {
-			if (updated.current) {
-				updateServiceWorker();
-			}
-		});
+		if (serviceWorkerSupported()) {
+			$effect(() => {
+				if (updated.current) {
+					updateServiceWorker();
+				}
+			});
+		} else {
+			beforeNavigate(({ willUnload, to }) => {
+				if (updated.current && !willUnload && to?.url) {
+					location.href = to.url.href;
+				}
+			});
+		}
 	}
 </script>
 
