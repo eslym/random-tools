@@ -50,6 +50,7 @@
 	import { PersistedState } from 'runed';
 	import { Snippet } from '$lib/components/ui/snippet';
 	import { Switch } from '$lib/components/ui/switch';
+	import * as InputGroup from '$lib/components/ui/input-group';
 
 	let { data: meta } = $props();
 
@@ -115,17 +116,14 @@
 					</div>
 					<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 						<Label for="password">Password</Label>
-						<div class="relative">
-							<Input id="password" type="text" bind:value={password} class="w-full pr-10" />
-							<Button
-								variant="ghost"
-								size="icon"
-								class="absolute top-px right-px size-[calc(calc(var(--spacing)*9)-2px)] rounded-l-none"
-								onclick={() => (password = randomPass())}
-							>
-								<RefreshCwIcon />
-							</Button>
-						</div>
+						<InputGroup.Root class="bg-background dark:bg-input/30">
+							<InputGroup.Input id="password" type="text" bind:value={password} />
+							<InputGroup.Addon align="inline-end">
+								<InputGroup.Button size="icon-xs" onclick={() => (password = randomPass())}>
+									<RefreshCwIcon />
+								</InputGroup.Button>
+							</InputGroup.Addon>
+						</InputGroup.Root>
 						<div class="col-start-2 text-xs text-muted-foreground @max-md:col-start-1">
 							This password will not stored anywhere, if you don't note it down you will lose it.
 						</div>

@@ -5,7 +5,6 @@
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { buttonVariants, Button } from '$lib/components/ui/button';
 	import { SunIcon, MoonIcon, PaletteIcon, GithubIcon } from '@lucide/svelte';
-	import { theme } from '$lib/theme.svelte';
 	import {
 		PUBLIC_APP_URL,
 		PUBLIC_PUBLISHER_NAME,
@@ -14,6 +13,7 @@
 	} from '$env/static/public';
 	import { page } from '$app/state';
 	import JsonLd from '$lib/components/utils/json-ld.svelte';
+	import { mode, setMode, userPrefersMode } from 'mode-watcher';
 
 	let { group, title, description }: { group?: string; title: string; description?: string } =
 		$props();
@@ -24,7 +24,7 @@
 		system: PaletteIcon
 	};
 
-	let ThemeIcon = $derived(icons[theme.value]);
+	let ThemeIcon = $derived(icons[userPrefersMode.current]);
 
 	let origin = $derived.by(() => {
 		if (!import.meta.env.SSR) {
@@ -87,7 +87,9 @@
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content align="end">
 				<DropdownMenu.Group>
-					<DropdownMenu.RadioGroup bind:value={theme.value}>
+					<DropdownMenu.RadioGroup
+						bind:value={() => userPrefersMode.current, (val) => setMode(val)}
+					>
 						<DropdownMenu.RadioItem value="system">
 							<PaletteIcon class="mr-2 size-4" />
 							System

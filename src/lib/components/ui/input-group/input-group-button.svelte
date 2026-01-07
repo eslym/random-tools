@@ -22,13 +22,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
 	import type { ComponentProps } from 'svelte';
-	import {
-		Button,
-		type AnchorElementProps,
-		type ButtonElementProps,
-		type ButtonProps
-	} from '$lib/components/ui/button/index.js';
-	import type { DOMAttributes } from 'svelte/elements';
+	import { Button } from '$lib/components/ui/button/index.js';
 
 	let {
 		ref = $bindable(null),
@@ -38,10 +32,9 @@
 		variant = 'ghost',
 		size = 'xs',
 		...restProps
-	}: (Omit<AnchorElementProps, 'size' | 'href'> | Omit<ButtonElementProps, 'size' | 'href'>) &
-		DOMAttributes<HTMLButtonElement | HTMLAnchorElement> & {
-			size?: InputGroupButtonSize;
-		} = $props();
+	}: Omit<ComponentProps<typeof Button>, 'href' | 'size'> & {
+		size?: InputGroupButtonSize;
+	} = $props();
 </script>
 
 <Button

@@ -47,49 +47,56 @@
 		</Card.Header>
 		<Card.Content>
 			<div class="grid grid-cols-1 gap-2">
-				{#each data.current.colors as color, index (index)}
-					{@const isLast = index === data.current.colors.length - 1}
-					<div class="flex gap-2">
-						<Button
-							variant="ghost"
-							size="icon"
-							disabled={index === 0}
-							onclick={() => {
-								const color = data.current.colors.splice(index, 1)[0];
-								data.current.colors.splice(index - 1, 0, color);
-							}}
-						>
-							<ChevronsUpIcon />
-						</Button>
-						<Button
-							variant="ghost"
-							size="icon"
-							disabled={isLast}
-							onclick={() => {
-								const color = data.current.colors.splice(index, 1)[0];
-								data.current.colors.splice(index + 1, 0, color);
-							}}
-						>
-							<ChevronsDownIcon />
-						</Button>
-						<ColorPicker.Root bind:value={data.current.colors[index]}>
-							<ColorPicker.Trigger class="grow capitalize">
-								{color}
-							</ColorPicker.Trigger>
-							<ColorPicker.Picker />
-						</ColorPicker.Root>
-						<Button
-							variant="destructive"
-							disabled={data.current.colors.length <= 2}
-							size="icon"
-							onclick={() => {
-								data.current.colors.splice(index, 1);
-							}}
-						>
-							<MinusIcon />
-						</Button>
-					</div>
-				{/each}
+				<svelte:boundary
+					onerror={(e) => {
+						console.error(e);
+						debugger;
+					}}
+				>
+					{#each data.current.colors as color, index (index)}
+						{@const isLast = index === data.current.colors.length - 1}
+						<div class="flex gap-2">
+							<Button
+								variant="ghost"
+								size="icon"
+								disabled={index === 0}
+								onclick={() => {
+									const color = data.current.colors.splice(index, 1)[0];
+									data.current.colors.splice(index - 1, 0, color);
+								}}
+							>
+								<ChevronsUpIcon />
+							</Button>
+							<Button
+								variant="ghost"
+								size="icon"
+								disabled={isLast}
+								onclick={() => {
+									const color = data.current.colors.splice(index, 1)[0];
+									data.current.colors.splice(index + 1, 0, color);
+								}}
+							>
+								<ChevronsDownIcon />
+							</Button>
+							<ColorPicker.Root bind:value={data.current.colors[index]}>
+								<ColorPicker.Trigger class="grow uppercase">
+									{color}
+								</ColorPicker.Trigger>
+								<ColorPicker.Picker isAlpha={false} align="start" />
+							</ColorPicker.Root>
+							<Button
+								variant="destructive"
+								disabled={data.current.colors.length <= 2}
+								size="icon"
+								onclick={() => {
+									data.current.colors.splice(index, 1);
+								}}
+							>
+								<MinusIcon />
+							</Button>
+						</div>
+					{/each}
+				</svelte:boundary>
 				<div class="mt-2 flex justify-end">
 					<Button
 						variant="secondary"

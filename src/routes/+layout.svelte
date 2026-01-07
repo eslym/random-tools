@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import { theme } from '$lib/theme.svelte';
 	import { browser } from '$app/environment';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { update } from '$lib/stores/update.svelte';
@@ -9,20 +8,11 @@
 	import { updated } from '$app/state';
 	import { serviceWorkerSupported, updateServiceWorker } from '$lib/sw';
 	import { beforeNavigate } from '$app/navigation';
+	import { ModeWatcher } from 'mode-watcher';
 
 	let { children } = $props();
 
 	if (browser) {
-		const themeColor = document.querySelector('meta[name="theme-color"]');
-
-		$effect(() => {
-			if (theme.current === 'dark') {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
-		});
-
 		/**
 		 * If service worker is supported, update it and it will trigger the prompt for reload,
 		 * otherwise listen to navigation events and force a full reload if there's an update.
@@ -52,8 +42,9 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<meta name="theme-color" content={theme.current === 'dark' ? '#131119' : '#fcfcff'} />
 </svelte:head>
+
+<ModeWatcher themeColors={{ light: '#d4ceee', dark: '#494762' }} />
 
 {@render children()}
 

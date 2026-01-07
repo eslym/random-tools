@@ -39,13 +39,14 @@
 	import * as Card from '$lib/components/ui/card';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
-	import { Button, buttonVariants } from '$lib/components/ui/button';
+	import { Button } from '$lib/components/ui/button';
 	import * as Select from '$lib/components/ui/select';
 	import * as Password from '$lib/components/ui/password';
 	import { preventDefault } from '$lib/events';
 	import { Skeleton } from '$lib/components/ui/skeleton';
 	import * as Code from '$lib/components/ui/code';
 	import { Snippet } from '$lib/components/ui/snippet';
+	import * as ToggleGroup from '$lib/components/ui/toggle-group';
 
 	let { data: meta } = $props();
 
@@ -73,39 +74,18 @@
 				>
 					<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 						<Label>Algorithm</Label>
-						<div
-							class={buttonVariants({
-								variant: 'outline',
-								class: 'items-center hover:bg-background dark:hover:bg-input/30'
-							})}
+						<ToggleGroup.Root
+							class="w-full bg-background dark:bg-input/30"
+							variant="outline"
+							type="single"
+							bind:value={
+								() => (mounted.current, opts.current.algorithm), (v) => (opts.current.algorithm = v)
+							}
 						>
-							{#if mounted.current}
-								<Button
-									type="button"
-									variant={opts.current.algorithm === 'rsa' ? 'default' : 'ghost'}
-									class="h-5 flex-1 p-0 text-xs"
-									onclick={() => (opts.current.algorithm = 'rsa')}
-								>
-									RSA
-								</Button>
-								<Button
-									type="button"
-									variant={opts.current.algorithm === 'ecdsa' ? 'default' : 'ghost'}
-									class="h-5 flex-1 p-0 text-xs"
-									onclick={() => (opts.current.algorithm = 'ecdsa')}
-								>
-									ECDSA
-								</Button>
-								<Button
-									type="button"
-									variant={opts.current.algorithm === 'ed25519' ? 'default' : 'ghost'}
-									class="h-5 flex-1 p-0 text-xs"
-									onclick={() => (opts.current.algorithm = 'ed25519')}
-								>
-									Ed25519
-								</Button>
-							{/if}
-						</div>
+							<ToggleGroup.Item class="flex-1" value="rsa">RSA</ToggleGroup.Item>
+							<ToggleGroup.Item class="flex-1" value="ecdsa">ECDSA</ToggleGroup.Item>
+							<ToggleGroup.Item class="flex-1" value="ed25519">Ed25519</ToggleGroup.Item>
+						</ToggleGroup.Root>
 					</div>
 					{#if mounted.current}
 						{#if opts.current.algorithm === 'rsa'}
@@ -118,7 +98,7 @@
 										(v) => (opts.current.modulusLength = +v as any)
 									}
 								>
-									<Select.Trigger id="modulusLength" class="w-full">
+									<Select.Trigger id="modulusLength" class="w-full bg-background dark:bg-input/30">
 										{opts.current.modulusLength}
 									</Select.Trigger>
 									<Select.Content>
@@ -131,7 +111,7 @@
 							<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 								<Label for="hash">Hash</Label>
 								<Select.Root type="single" bind:value={opts.current.hash as any}>
-									<Select.Trigger id="hash" class="w-full">
+									<Select.Trigger id="hash" class="w-full bg-background dark:bg-input/30">
 										{opts.current.hash}
 									</Select.Trigger>
 									<Select.Content>
@@ -145,7 +125,7 @@
 							<div class="col-span-2 grid grid-cols-subgrid gap-y-2 @max-md:col-span-1">
 								<Label for="namedCurve">Curve</Label>
 								<Select.Root type="single" bind:value={opts.current.namedCurve as any}>
-									<Select.Trigger id="namedCurve" class="w-full">
+									<Select.Trigger id="namedCurve" class="w-full bg-background dark:bg-input/30">
 										{opts.current.namedCurve}
 									</Select.Trigger>
 									<Select.Content>

@@ -1,4 +1,4 @@
-import faviconSvg from '$lib/assets/favicon.svg?url';
+import iconSvg from '$lib/assets/icon-maskable.svg?url';
 
 export const prerender = true;
 
@@ -9,13 +9,14 @@ export function GET() {
 			short_name: 'RandomTools',
 			start_url: '/',
 			display: 'standalone',
-			background_color: '#fcfcff',
-			theme_color: '#fcfcff',
+			background_color: '#f8f8ff',
+			theme_color: '#d4ceee',
 			icons: [
 				{
-					src: faviconSvg,
+					src: iconSvg,
 					sizes: 'any',
-					type: 'image/svg+xml'
+					type: 'image/svg+xml',
+					purpose: 'maskable'
 				}
 			]
 		},
