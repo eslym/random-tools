@@ -27,13 +27,14 @@
 	import AppHeader from '$lib/components/app-header.svelte';
 	import { PersistedState } from 'runed';
 	import * as Card from '$lib/components/ui/card';
-	import { Input } from '$lib/components/ui/input';
+	import * as InputGroup from '$lib/components/ui/input-group';
 	import AppMain from '$lib/components/app-main.svelte';
 	import * as ColorPicker from '$lib/components/ui/color-picker';
 	import { Button } from '$lib/components/ui/button';
 	import { ChevronsDownIcon, ChevronsUpIcon, MinusIcon } from '@lucide/svelte';
 	import { Snippet } from '$lib/components/ui/snippet';
 	import NumInput from '$lib/components/num-input.svelte';
+	import PopoverTrigger from '$lib/components/ui/popover/popover-trigger.svelte';
 
 	let { data: meta } = $props();
 </script>
@@ -54,47 +55,58 @@
 					}}
 				>
 					{#each data.current.colors as color, index (index)}
+						{@const isFirst = index === 0}
 						{@const isLast = index === data.current.colors.length - 1}
-						<div class="flex gap-2">
-							<Button
-								variant="ghost"
-								size="icon"
-								disabled={index === 0}
-								onclick={() => {
-									const color = data.current.colors.splice(index, 1)[0];
-									data.current.colors.splice(index - 1, 0, color);
-								}}
-							>
-								<ChevronsUpIcon />
-							</Button>
-							<Button
-								variant="ghost"
-								size="icon"
-								disabled={isLast}
-								onclick={() => {
-									const color = data.current.colors.splice(index, 1)[0];
-									data.current.colors.splice(index + 1, 0, color);
-								}}
-							>
-								<ChevronsDownIcon />
-							</Button>
-							<ColorPicker.Root bind:value={data.current.colors[index]}>
-								<ColorPicker.Trigger class="grow uppercase">
-									{color}
-								</ColorPicker.Trigger>
-								<ColorPicker.Picker isAlpha={false} align="start" />
-							</ColorPicker.Root>
-							<Button
-								variant="destructive"
-								disabled={data.current.colors.length <= 2}
-								size="icon"
-								onclick={() => {
-									data.current.colors.splice(index, 1);
-								}}
-							>
-								<MinusIcon />
-							</Button>
-						</div>
+						<ColorPicker.Root bind:value={data.current.colors[index]}>
+							<InputGroup.Root>
+								<InputGroup.Addon align="inline-start">
+									<InputGroup.Button
+										size="icon-xs"
+										disabled={isFirst}
+										onclick={() => {
+											const color = data.current.colors.splice(index, 1)[0];
+											data.current.colors.splice(index - 1, 0, color);
+										}}
+									>
+										<ChevronsUpIcon />
+									</InputGroup.Button>
+									<InputGroup.Button
+										size="icon-xs"
+										disabled={isLast}
+										onclick={() => {
+											const color = data.current.colors.splice(index, 1)[0];
+											data.current.colors.splice(index + 1, 0, color);
+										}}
+									>
+										<ChevronsDownIcon />
+									</InputGroup.Button>
+									<div class="ml-3 size-6 rounded-full border" style:background-color={color}></div>
+								</InputGroup.Addon>
+								<PopoverTrigger>
+									{#snippet child({ props })}
+										<InputGroup.Input
+											{...props}
+											type="button"
+											class="-ml-9 pl-11! text-left uppercase"
+											value={color}
+										/>
+									{/snippet}
+								</PopoverTrigger>
+								<InputGroup.Addon align="inline-end">
+									<InputGroup.Button
+										variant="destructive"
+										size="icon-xs"
+										disabled={data.current.colors.length <= 2}
+										onclick={() => {
+											data.current.colors.splice(index, 1);
+										}}
+									>
+										<MinusIcon />
+									</InputGroup.Button>
+								</InputGroup.Addon>
+							</InputGroup.Root>
+							<ColorPicker.Picker isAlpha={false} align="start" />
+						</ColorPicker.Root>
 					{/each}
 				</svelte:boundary>
 				<div class="mt-2 flex justify-end">
