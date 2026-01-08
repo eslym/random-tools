@@ -44,7 +44,7 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<ModeWatcher themeColors={{ light: '#d4ceee', dark: '#494762' }} />
+<ModeWatcher themeColors={{ light: '#fbfbff', dark: '#242532' }} />
 
 {@render children()}
 
